@@ -4,6 +4,8 @@ Utility functions used in Activity 6.
 Author: Luis Capelo
 Date: 2017-12-18
 """
+import os
+
 import random
 import numpy as np
 
@@ -109,7 +111,9 @@ def train_model(model, X, Y, epochs=100, version=0, run_number=0):
         version=version, run_number=run_number, hex_code=hex_code[:6])
 
 
-    tensorboard = TensorBoard(log_dir='logs\\{}'.format(model_name))
+#     tensorboard = TensorBoard(log_dir='logs\\{}'.format(model_name))
+    tensorboard = TensorBoard(log_dir=os.path.join('logs','{}'.format(model_name)))
+
     model_history = model.fit(
         x=X, y=Y,
         batch_size=1, epochs=epochs,
